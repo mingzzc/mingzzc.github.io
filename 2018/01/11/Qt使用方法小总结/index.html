@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        JaminChang&#39;s blog
+        Qt使用方法小总结｜JaminChang&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jaminchang.github.io/archives/2017/">
+    <link rel="canonical" href="http://jaminchang.github.io/2018/01/11/Qt使用方法小总结/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -123,111 +123,149 @@
 </script>
 
 <!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="star.jpg">
+
+
 <style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
     
     header.intro-header {
         background-image: url('star.jpg')
     }
+
     
 </style>
 
-<!-- Page Header -->
 <header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>archives</h1>
-                    <span class="subheading">可以根据归档日期检索所有文件</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Qt使用方法小总结</h1>
+                    
+                    <span class="meta">
+                         作者 Zhiming Chang
+                        <span>
+                          日期 2018-01-11
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="post-title-haojen">
+        <span>
+            Qt使用方法小总结
+        </span>
+    </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- archive list -->
-            
-				
-				
-				
-					
-					
-					<div class="archive archive-year" data-date="2018">
-						<h2 class="archive-title">
-						<span class="fa fa-archive">
-							<a href="/archives/2018">2018</a>
-						</span>
-						</h2>
-				
-				
-					
-					
-					<div class="archive archive-month" data-date="201801">
-						<h3 class="archive-title">
-							<a href="/archives/2018/01">01</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/01/11/Qt使用方法小总结/">
-                        <h4 class="post-title">
-                            Qt使用方法小总结
-                        </h4>
-                        
-                    </a>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <pre><code>1.qpushbutton
+</code></pre><p>Qpushbutton是qt中的按钮，可以对其进行resize,move,settext,setfont等操作，setfont的参数是qfont类型qfont第一个参数是qstring类型，一般用“”代替就行，第二个参数是字号的大小。</p>
+<pre><code>2.qlineedit
+
+3.qlabel
+
+4.qtableview
+</code></pre><p>temp1=new QStandardItemModel(this);//建立qstanditemmodel<br>ui-&gt;tableView-&gt;setModel(temp1);//将tableview与standitemmodel结合<br>ui-&gt;tableView-&gt;setEditTriggers(QAbstractItemView::NoEditTriggers);//不能编辑<br>ui-&gt;tableView-&gt;setSelectionBehavior(QAbstractItemView::SelectRows);//选中时，选中行<br>ui-&gt;tableView-&gt;setSortingEnabled(true);//可以排序<br>ui-&gt;tableView-&gt;setShowGrid(false);//不显示网格<br>ui-&gt;tableView-&gt;verticalHeader()-&gt;hide();//隐藏头一列</p>
+<p>temp1-&gt;setHorizontalHeaderItem(0,new QStandardItem(tr(“课程名称”)));<br>temp1-&gt;setHorizontalHeaderItem(1,new QStandardItem(tr(“上课时间”)));<br>temp1-&gt;setHorizontalHeaderItem(2,new QStandardItem(tr(“教室”)));</p>
+<p>temp1-&gt;setItem(index,j++,new QStandardItem(te.split(“ “)[0]));<br>temp1-&gt;setItem(index,j++,new QStandardItem(te.split(“ “)[1]));</p>
+<p>获取表格的数据，要用temp而不是tableview<br>temp1-&gt;data(temp1-&gt;index(ui-&gt;tableView-&gt;currentIndex().row(),1)).toString()<br>data的参数是index对象，index包括row和column一般可以用temp.index来表示</p>
+<pre><code>5.qfile
+</code></pre><p>QFile p(“路径”);<br>    p.open(QIODevice::ReadOnly);//只读，writeonly和readwrite等多种模式。<br>    QTextStream pp(&amp;p);//绑定<br>    pp.setCodec(“System”);//设置编码<br>    QString te;<br>    while (!pp.atEnd())//不到文件最后<br>    {<br>        te=pp.readLine();//pp.readline() p.readline()不同点是第一个最后没有“\r\n”的回车换行，但第二个有。<br>}<br>文件写入的话就用&lt;&lt;，将指针放到开头p.resize(0);</p>
+<pre><code>6.qstringlist
+</code></pre><p>Qstring.split(“ “)就是qstringlist加中括号和下表提取对应的qstring</p>
+<pre><code>7.QDebug
+</code></pre><p>qDebug()&lt;&lt; 输出信息供debug使用</p>
+<pre><code>8.qfont 字体设置，第一个参数是qstring对象，一般用空字符串代替，第二个是字号大小
+
+9.qmessagebox
+</code></pre><p>QMessageBox::warning(this,tr(“通知”),ii.readAll(),tr(“确定”));//第一个参数父窗口，第二个窗口名称，第三个窗口内容，第四个是按钮名称。<br>int reply=QMessageBox::question(this,tr(“提示”),tr(“确定要删除这一节课吗”));//第一个是父窗口，第二个是名称第三个是显示内容，返回值一般有两种QMessage::yes,QMessange::no</p>
+<pre><code>10.qbrush,qpixmap qpalette设置背景图片
+</code></pre><p>QPalette temp;//调色板<br>temp.setBrush(QPalette::Background,QBrush(QPixmap(“./doc/image/3.jpg”)));//qpix将图片像素点提取出来，通过qbrush刷到调色板上<br>this-&gt;setPalette(temp);//给窗口设置调色板。</p>
+<pre><code>11.设置透明度和颜色
+</code></pre><p>log-&gt;setStyleSheet(“background:rgba(250,250,250,100);”);</p>
+<pre><code>12.槽和信号的连接
+</code></pre><p>connect(log,&amp;QPushButton::clicked,this,&amp;student_log::login);<br>connect(exit,&amp;QPushButton::clicked,this,&amp;student_log::ex);</p>
+<pre><code>13.窗口设置
+</code></pre><p>this-&gt;setWindowFlags(Qt::FramelessWindowHint);//窗口无标题栏<br>this-&gt;setWindowOpacity(0.2);//窗口透明度</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/09/09/Welcome-to-ZhimingChang-s-personal-blog.md/" data-toggle="tooltip" data-placement="top"
+                           title="welcome to jaminchang's blog">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
                 </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-					
-					</div><!--month-->
-					</div><!--year-->
-					
-					
-					
-					<div class="archive archive-year" data-date="2017">
-						<h2 class="archive-title">
-						<span class="fa fa-archive">
-							<a href="/archives/2017">2017</a>
-						</span>
-						</h2>
-				
-				
-					
-					
-					<div class="archive archive-month" data-date="201709">
-						<h3 class="archive-title">
-							<a href="/archives/2017/09">09</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2017/09/09/Welcome-to-ZhimingChang-s-personal-blog.md/">
-                        <h4 class="post-title">
-                            welcome to jaminchang's blog
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            hi, I'm jaminchang
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
